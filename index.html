@@ -11,38 +11,43 @@ html{
 }
 s-game{
 	--inch:calc(100vmin/180);
+	
 	--tile-size:calc(30*var(--inch));
-	--tile-color-even:hsl(000,000%,10%);
-	--tile-color-odd:hsl(000,000%,12%);
+	--tile-color-even:hsl(000deg,000%,10%);
+	--tile-color-odd:hsl(000deg,000%,12%);
 	--tile-border-width:calc(1*var(--inch));
 	--tile-border-style:dashed;
-	font-size:0;
-}
-s-game *{
-	display:block;
-	position:fixed;
-}
-s-tiles{
-	right:0;
-	bottom:0;
+	
+	--tape-border-width:calc(2*var(--inch));
+	--tape-border-style:solid;
+	
+	--team-one-color:hsl(000deg,100%,050%);
+	--team-two-color:hsl(210deg,100%,050%);
+	
 	width:100vmin;
 	height:100vmin;
-	background:white;
+	font-size:0;
+	right:0;
+	bottom:0;
+}
+s-game,s-game *{
+	position:absolute;
+	display:block;
+}
+s-tiles,s-walls{
+	width:100%;
+	height:100%;
 }
 s-tiles *{
 	position:relative;
 }
 s-tile{
 	display:inline-block;
-	width:var(--tile-size);
-	height:var(--tile-size);
 	background:var(--tile-color-even);
 	border:solid var(--tile-border-width) var(--tile-color-even);
 }
 s-tile{
 	display:inline-block;
-	width:var(--tile-size);
-	height:var(--tile-size);
 	background:var(--tile-color-even);
 	border:var(--tile-border-style) var(--tile-border-width) var(--tile-color-odd);
 }
@@ -50,6 +55,31 @@ s-tiles-row:nth-child(even)>:nth-child(odd),
 s-tiles-row:nth-child(odd)>:nth-child(even){
 	background:var(--tile-color-odd);
 	border-color:var(--tile-color-even);
+}
+s-tile,s-depot{
+	width:var(--tile-size);
+	height:var(--tile-size);
+}
+s-sites{
+	display:contents;
+}
+s-depot{
+	bottom:0;
+	border:var(--tape-border-style) var(--tape-border-width);
+	border-bottom:none;
+}
+[team='1']{
+	left:0;
+	border-color:var(--team-one-color);
+	border-left:none;
+}
+[team='2']{
+	right:0;
+	border-color:var(--team-two-color);
+	border-right:none;
+}
+s-walls{
+	border:solid var(--tile-border-width) hsl(000,000%,020%);
 }
 		</style>
 	</head>
@@ -112,6 +142,7 @@ s-tiles-row:nth-child(odd)>:nth-child(even){
 				<s-bridge team='2'></s-bridge>
 				<s-ramp></s-ramp>
 			</s-sites>
+			<s-walls></s-walls>
 		</s-game>
 	</body>
 </html>
