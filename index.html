@@ -92,15 +92,18 @@ s-game,s-game *{
 						opacity='0.005'
 					/>
 				</g>
-				<g id='tapes'>
+				<g id='tapes' stroke-linecap='square'>
 					<defs>
 						<path id='tapes-template'
-							d='M0 180v-30h30v30z'
+							d='M0 152h28v28
+								 M0 92h60z
+								 M28 0v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2'
 						/>
 					</defs>
 					<use id='tapes-team-one' href='#tapes-template'/>
 					<use id='tapes-team-two' href='#tapes-template' x='-180' transform='scale(-1,1)'/>
 				</g>
+				<rect id='ramp' width='60' height='20' x='60' y='80' stroke='#111' stroke-width='2'/>
 				<rect id='wall'
 					width='180'
 					height='180'
