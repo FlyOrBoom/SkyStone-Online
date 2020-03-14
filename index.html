@@ -3,7 +3,6 @@
 	<head>
 		<style>
 *{
-	all:unset;
 	box-sizing:border-box;
 }
 html{
@@ -12,14 +11,12 @@ html{
 s-game{
 	--inch:calc(100vmin/180);
 	
-	--tile-size:calc(30*var(--inch));
 	--tile-color-even:hsl(000deg,000%,10%);
-	--tile-color-odd:hsl(000deg,000%,12%);
-	--tile-border-width:calc(1*var(--inch));
-	--tile-border-style:dashed;
+	--tile-color-odd:hsl(000deg,000%,11%);
+	--tile-edge-width:2;
 	
-	--tape-border-width:calc(2*var(--inch));
-	--tape-border-style:solid;
+	--tape-width:2;
+	--tape-style:0;
 	--tape-opacity:50%;
 	
 	--team-one-color:hsl(000deg,100%,050%);
@@ -36,162 +33,81 @@ s-game,s-game *{
 	position:absolute;
 	display:block;
 }
-s-field{
-	position:static;
-	display:content;
-}
-s-tiles,s-walls{
+#field{
 	width:100%;
 	height:100%;
-}
-s-tiles *{
-	position:relative;
-}
-s-tiles-texture{
-	width:100%;
-	height:100%;
-	background:url(tiles-texture.png);
-	background-size:cover;
-	image-rendering:pixelated;
-	opacity:.01;
-}
-s-tile{
-	display:inline-block;
-	background-color:var(--tile-color-even);
-	border:solid var(--tile-border-width) var(--tile-color-even);
-}
-s-tile{
-	display:inline-block;
-	background-color:var(--tile-color-even);
-	border:var(--tile-border-style) var(--tile-border-width) var(--tile-color-odd);
-}
-s-tiles-row:nth-child(even)>:nth-child(odd),
-s-tiles-row:nth-child(odd)>:nth-child(even){
-	background:var(--tile-color-odd);
-	border-color:var(--tile-color-even);
-}
-s-tile,s-tape-depot{
-	width:var(--tile-size);
-	height:var(--tile-size);
-}
-s-tapes{
-	display:contents;
-}
-s-tapes *{
-	opacity:var(--tape-opacity);
-	border:var(--tape-border-width) var(--tape-border-style);
-}
-s-tape-depot,s-tape-bridge{
-	bottom:0;
-	border-bottom:none;
-}
-s-tape-bridge,s-ramp{
-	width:calc(2*var(--tile-size));
-}
-s-tape-bridge{
-	height:calc(3*var(--tile-size));
-	border-left:none;
-	border-right:none;
-}
-s-tape-build{
-	width:calc(42*var(--inch));
-	height:calc(42*var(--inch));
-	top:calc(-20*var(--inch));
-	transform:rotate(45deg);
-}
-[team='1']{
+	top:0;
 	left:0;
-	border-color:var(--team-one-color);
-	border-left:none;
 }
-[team='2']{
-	right:0;
-	border-color:var(--team-two-color);
-	border-right:none;
+#tiles-even{
+	fill:var(--tile-color-even)
 }
-s-tape-build[team='1']{
-	left:calc(-20*var(--inch));
+#tiles-odd{
+	fill:var(--tile-color-odd);
+	stroke:var(--tile-color-even);
+	stroke-width:var(--tile-edge-width)
 }
-s-tape-build[team='2']{
-	right:calc(-20*var(--inch));
+#tiles-texture{
+	image-rendering:pixelated
 }
-s-ramp{
-	height:calc(20*var(--inch));
-	left:calc(2*var(--tile-size));
-	top:calc(2*var(--tile-size) + 20*var(--inch));
-	border:solid var(--tape-border-width) hsl(000,000%,005%);
-	background:hsl(000,000%,000%);
+#wall{
+	stroke:hsl(000deg,000%,020%)
 }
-s-walls{
-	border:solid var(--tile-border-width) hsl(000,000%,020%);
+#tapes{
+	opacity:var(--tape-opacity);
+}
+#tapes *{
+	fill:none;
+	stroke-width:var(--tape-width);
+	stroke-dasharray:var(--tape-style);
+}
+#tapes-team-one{
+	stroke:var(--team-one-color);
+}
+#tapes-team-two{
+	stroke:var(--team-two-color);
 }
 		</style>
 	</head>
 	<body>
 		<s-game>
-			<s-field>
-				<s-tiles>
-						<s-tiles-row>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-						</s-tiles-row>
-						<s-tiles-row>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-						</s-tiles-row>
-						<s-tiles-row>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-						</s-tiles-row>
-						<s-tiles-row>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-						</s-tiles-row>
-						<s-tiles-row>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-						</s-tiles-row>
-						<s-tiles-row>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-							<s-tile></s-tile>
-						</s-tiles-row>
-					</s-tiles>
-				<s-tiles-texture></s-tiles-texture>
-				<s-tapes>
-					<s-tape-depot team='1'></s-tape-depot>
-					<s-tape-depot team='2'></s-tape-depot>
-					<s-tape-bridge team='1'></s-tape-bridge>
-					<s-tape-bridge team='2'></s-tape-bridge>
-					<s-tape-build team='1'></s-tape-build>
-					<s-tape-build team='2'></s-tape-build>
-				</s-tapes>
-				<s-ramp></s-ramp>
-				<s-walls></s-walls>
-			</s-field>
+			<svg id='field' width='180' height='180' viewBox='0 0 180 180'>
+				<g id='tiles'>
+					<rect id='tiles-even'
+						width='180'
+						height='180'
+						stroke-width='2'
+						stroke='black'
+					/>
+					<path id='tiles-odd'
+						d='M0 0v180h30V0h30v180h30V0h30v180h30V0h30
+							 v30H0v30h180v30H0v30h180v30H0v30h180v30H0z'
+						stroke-width='2'
+						stroke-dasharray='2'
+					/>
+					<image id='tiles-texture'
+						href='tiles-texture.png'
+						width='180'
+						height='180'
+						opacity='0.005'
+					/>
+				</g>
+				<g id='tapes'>
+					<defs>
+						<path id='tapes-template'
+							d='M0 180v-30h30v30z'
+						/>
+					</defs>
+					<use id='tapes-team-one' href='#tapes-template'/>
+					<use id='tapes-team-two' href='#tapes-template' x='-180' transform='scale(-1,1)'/>
+				</g>
+				<rect id='wall'
+					width='180'
+					height='180'
+					fill='none'
+					stroke-width='2'
+				/>
+			</svg>
 		</s-game>
 	</body>
 </html>
