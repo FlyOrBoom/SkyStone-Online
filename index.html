@@ -47,14 +47,22 @@ s-tiles,s-walls{
 s-tiles *{
 	position:relative;
 }
+s-tiles-texture{
+	width:100%;
+	height:100%;
+	background:url(tiles-texture.png);
+	background-size:cover;
+	image-rendering:pixelated;
+	opacity:.01;
+}
 s-tile{
 	display:inline-block;
-	background:var(--tile-color-even);
+	background-color:var(--tile-color-even);
 	border:solid var(--tile-border-width) var(--tile-color-even);
 }
 s-tile{
 	display:inline-block;
-	background:var(--tile-color-even);
+	background-color:var(--tile-color-even);
 	border:var(--tile-border-style) var(--tile-border-width) var(--tile-color-odd);
 }
 s-tiles-row:nth-child(even)>:nth-child(odd),
@@ -172,6 +180,7 @@ s-walls{
 							<s-tile></s-tile>
 						</s-tiles-row>
 					</s-tiles>
+				<s-tiles-texture></s-tiles-texture>
 				<s-tapes>
 					<s-tape-depot team='1'></s-tape-depot>
 					<s-tape-depot team='2'></s-tape-depot>
